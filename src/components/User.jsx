@@ -1,28 +1,21 @@
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { add } from '../redux/slice'
-import { useEffect, useState } from "react";
-
-const User = () => {
-    // let value = 3;
-    const dispatch = useDispatch()
-    const [user, setUser] = useState([])
-    if(user[0]){
-        dispatch(add(user))
-
-    }
-    const fetchData = () => {
-        return axios.get("https://jsonplaceholder.typicode.com/users")
-              .then((response) => setUser(response.data));
-      }
-    useEffect(() => {
-        fetchData();
-    },[])
-    return (
-        <div>
-            <h1>value</h1>
-
-        </div>
-    )
-}
+import "./User.css";
+const User = (props) => {
+  const { name, email, id, phone, website } = props;
+  return (
+    // <div>
+    <div className="shadow-md w-3/12 mx-auto my-auto p-4 duration-75 hover:shadow-lg">
+      <h1>{name}</h1>
+      <h2>{email}</h2>
+      <h2>{phone}</h2>
+      <h2>{id}</h2>
+      <h3>{website}</h3>
+      <div className="flex">
+        <button>Update</button>
+        <button>Delete</button>
+        <button>Photos</button>
+      </div>
+    </div>
+    // {/* </div> */}
+  );
+};
 export default User;
