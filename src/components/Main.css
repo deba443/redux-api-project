@@ -6,3 +6,9 @@
     left: 40%;
     top:25% !important
 }
+.input{
+    border-bottom: 1px solid black;
+}
+.input:focus{
+    outline: none;
+}
