@@ -15,7 +15,9 @@ export const postSlice = createSlice({
     id:'',
     posts: [],
     loading: false,
-    info:{}
+    info:{},
+    photos:[],
+    ide:''
   },
   reducers:{
     set_all_posts:(state, action)=>{
@@ -38,6 +40,12 @@ export const postSlice = createSlice({
       state.posts[index]=action.payload
       return state
 
+    },
+    add_photos:(state,action)=>{
+      state.photos=action.payload.data
+      state.ide=action.payload.id
+      // console.log(state.photos)
+      return state
     }
   },
 
@@ -54,23 +62,23 @@ export const postSlice = createSlice({
   //   },
   // },
 });
-export const photoSlice=createSlice({
-  name:'photos',
-  initialState:{
-    photos:[]
-  },
-  reducers:{
-    add_photos:(state,action)=>{
-      state.photos=action.payload;
-      return state;
-    }
-  }
+// export const photoSlice=createSlice({
+//   name:'photos',
+//   initialState:{
+//     photos:[]
+//   },
+//   reducers:{
+//     add_photos:(state,action)=>{
+//       state.photos=action.payload;
+//       return state;
+//     }
+//   }
   
 
-})
+// })
 
-export const {set_all_posts,delete_post,get_info_for_update,update_post} = postSlice.actions;
-export const { add_photos}=photoSlice.actions;
+export const {set_all_posts,delete_post,get_info_for_update,update_post,add_photos} = postSlice.actions;
+// export const { add_photos}=photoSlice.actions;
 // export const {get_info_for_update}=updateSlice.actions;
 
 // export const userActions = userSlice.actions;
@@ -83,4 +91,4 @@ export const { add_photos}=photoSlice.actions;
 // });
 
 // export default counterSlice.reducer;
-// export default postSlice.reducer;
+export default postSlice.reducer;

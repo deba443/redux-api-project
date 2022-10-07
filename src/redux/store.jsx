@@ -1,10 +1,11 @@
-import {postSlice,photoSlice} from "./slice";
+// import {postSlice,photoSlice} from "./slice";
 import { configureStore } from "@reduxjs/toolkit";
+ import postSliceReducer from '../redux/slice';
 
 export const store = configureStore({
   reducer: {
-    post: postSlice.reducer,
-    photo:postSlice.reducer,
+    post: postSliceReducer,
+    // photo:postSlice.reducer,
   },
 });
 // import { configureStore } from "@reduxjs/toolkit";

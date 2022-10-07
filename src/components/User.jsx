@@ -4,23 +4,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { delete_post, get_info_for_update, add_photos } from '../redux/slice'
 // import Modal from "./Modal";
 import "./User.css";
+import { useNavigate } from "react-router-dom";
+
 const User = (props) => {
+    let data;
     const dispatch = useDispatch()
-    const data=useSelector((state)=>{
-        return state.photo
-    })
-    console.log(data)
+    const {photos}=useSelector((state)=>state.post)
+    const navigate=useNavigate()
+
+    // console.log(photos)
+    if(photos.length){
+        data=photos
+    }
     const { name, email, id, phone, website, open } = props;
-    // const fetchData = () => {
-    //         axios.get("https://jsonplaceholder.typicode.com/photos").then((res) => {
-    //             console.log(res.data)
-    //             dispatch(add_photos(res.data));
-    //         })
-        
-    // }
-    const handleClick=(e)=>{
+
+    const handleClick=async (e)=>{
         e.preventDefault()
-        axios.get("https://jsonplaceholder.typicode.com/photos").then((res)=>dispatch(add_photos(res.data)))
+        try{
+            let results=await axios.get("https://jsonplaceholder.typicode.com/photos")
+            // console.log(results)
+            if(results.data.length){
+                // console.log(results.data)
+                dispatch(add_photos({data:results.data,id:id}))
+            }
+        }
+        catch(err){
+            console.log('deba')
+
+        }
+        navigate(`${id}/photos`)
     }
 
     return (
