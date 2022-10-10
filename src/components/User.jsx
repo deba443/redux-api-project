@@ -47,7 +47,7 @@ const User = (props) => {
                 <button onClick={(e) => {
                     e.preventDefault();
                     open()
-                    dispatch(get_info_for_update(id))
+                    // dispatch(get_info_for_update(id))
                 }}>Update</button>
                 <button onClick={(e) => {
                     e.preventDefault();

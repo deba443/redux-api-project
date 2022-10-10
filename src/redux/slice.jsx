@@ -12,40 +12,47 @@ import axios from "axios";
 export const postSlice = createSlice({
   name: "userData",
   initialState: {
-    id:'',
+    id: '',
     posts: [],
     loading: false,
-    info:{},
-    photos:[],
-    ide:''
+    info: {},
+    photos: [],
+    ide: '',
+    photosData: []
   },
-  reducers:{
-    set_all_posts:(state, action)=>{
-      state.posts= action.payload
+  reducers: {
+    set_all_posts: (state, action) => {
+      state.posts = action.payload
       return state
     },
-    delete_post:(state,action)=>{
-      let new_post_data=state.posts.filter((item)=>item.id!==action.payload)
-      state.posts=new_post_data;
+    delete_post: (state, action) => {
+      let new_post_data = state.posts.filter((item) => item.id !== action.payload)
+      state.posts = new_post_data;
       return state
     },
-    get_info_for_update:(state,action)=>{
-      state.info={...state.posts.filter((item)=>item.id===action.payload)}
+    get_info_for_update: (state, action) => {
+      state.info = { ...state.posts.filter((item) => item.id === action.payload) }
       // console.log(state.info[0].name)
       return state
     },
-    update_post:(state,action)=>{
-      let value=state.posts.find((item)=>item.id===action.payload.id)
-      let index=state.posts.indexOf(value)
-      state.posts[index]=action.payload
+    update_post: (state, action) => {
+      let value = state.posts.find((item) => item.id === action.payload.id)
+      let index = state.posts.indexOf(value)
+      state.posts[index] = action.payload
       return state
 
     },
-    add_photos:(state,action)=>{
-      state.photos=action.payload.data
-      state.ide=action.payload.id
+    add_photos: (state, action) => {
+      state.photos = action.payload.data
+      state.ide = action.payload.id
       // console.log(state.photos)
       return state
+    },
+    create_photos: (state, action) => {
+      state.photosData = [...state.photosData, action.payload]
+      console.log(action.payload)
+      return state
+
     }
   },
 
@@ -73,11 +80,11 @@ export const postSlice = createSlice({
 //       return state;
 //     }
 //   }
-  
+
 
 // })
 
-export const {set_all_posts,delete_post,get_info_for_update,update_post,add_photos} = postSlice.actions;
+export const { set_all_posts, delete_post, get_info_for_update, update_post, add_photos, create_photos } = postSlice.actions;
 // export const { add_photos}=photoSlice.actions;
 // export const {get_info_for_update}=updateSlice.actions;
 
